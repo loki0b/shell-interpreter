@@ -8,7 +8,7 @@
 #define BIN_PATH "/bin/"
 
 int main(void) {
-	char args[MAX_LENGTH+1], *tokens, *arg_bin;
+	char args[MAX_LENGTH+1], *tokens;
 	int run = 1; /* flag to determine to exit program */
 	pid_t pid;
 
@@ -16,22 +16,12 @@ int main(void) {
 		printf("shell>");
 		fflush(stdout);
 		fgets(args, MAX_LENGTH+1, stdin);
+		args[strcspn(args, "\n")] = 0;
+		char arg_bin[] = BIN_PATH;
 		tokens = strtok(args, " ");
-
-		pid = fork();
+		strcat(arg_bin, tokens);
 		
-		if (pid < 0);
-		else if (pid == 0) {
-			arg_bin = BIN_PATH;
-			strcat(arg_bin, tokens);
-			execlp(arg_bin, "ls", NULL);
-			printf("Fork completed");
-		}
-		else {
-			printf("test");
-			wait(NULL);
-		}
-
+		execlp(arg_bin, tokens, NULL);
 		run = 0;
 	}
 
