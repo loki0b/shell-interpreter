@@ -6,10 +6,10 @@
 
 #define MAX_LENGTH 80
 
-void separate_tokens(char ch[], char *arr_ch[]);
+void separate_tokens(char *ch, char *arr_ch[]);
 
 int main(void) {
-	char args[MAX_LENGTH+1], *token, *tokens[10];
+	char args[MAX_LENGTH+1], *tokens[10];
 	int running; /* flag to determine when to exit program */
 	pid_t pid;
 
@@ -22,6 +22,7 @@ int main(void) {
 		args[strcspn(args, "\n")] = 0;
 
 		pid = fork();
+
 		if (pid < 0) {
 			fprintf(stderr, "Fork failed");
 			return -1;
@@ -52,4 +53,5 @@ void separate_tokens(char *ch, char *arr_ch[]) {
 		token = strtok(NULL, " ");
 		t_i++;
 	} while (token != NULL);
+	arr_ch[t_i] = NULL;
 }
