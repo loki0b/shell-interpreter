@@ -1,25 +1,11 @@
 #include <stdio.h>
-#include <unistd.h>
-#include <string.h>
-
-#define MAX_LENGTH 40
-#define BIN_PATH "/bin/"
 
 int main(void) {
-	char args[MAX_LENGTH+1], *tokens;
-	char arg_bin[] = BIN_PATH;
-	int run = 1; /* flag to determine to exit program */
+	int run = 1; /* flag to determine when to exit program */
 
 	while (run)	{
 		printf("shell>");
 		fflush(stdout);
-		
-		fgets(args, MAX_LENGTH+1, stdin);
-		args[strcspn(args, "\n")] = 0;
-		tokens = strtok(args, " ");
-		strcat(arg_bin, tokens);
-		
-		execlp(arg_bin, tokens, NULL);
 		run = 0;
 	}
 
