@@ -31,7 +31,7 @@ int main(int argc, char *argv[]) {
 			
 		} else {
 			fprintf(stderr, "Invalid arguments");
-			exit(EXIT_FAILURE);
+			return -1;
 		}
 
 		args[strcspn(args, "\n")] = 0;
