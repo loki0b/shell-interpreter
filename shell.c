@@ -30,7 +30,7 @@ int main(int argc, char *argv[]) {
 			running = 0;
 			
 		} else {
-			fprintf(stderr, "Invalide arguments");
+			fprintf(stderr, "Invalid arguments");
 			exit(EXIT_FAILURE);
 		}
 
