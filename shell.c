@@ -4,12 +4,13 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-#define MAX_LENGTH 80
+#define MAX_LENGTH 80 /* command line max length */
+#define MAX_TOKENS 40 /* tokens max length */
 
 void separate_tokens(char *ch, char *arr_ch[]);
 
 int main(void) {
-	char args[MAX_LENGTH+1], *tokens[10];
+	char args[MAX_LENGTH+1], *tokens[MAX_TOKENS];
 	int running; /* flag to determine when to exit program */
 	pid_t pid;
 
