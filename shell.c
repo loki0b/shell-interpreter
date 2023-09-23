@@ -11,7 +11,7 @@
 
 void separate_tokens(char *ch, char *arr_ch[]);
 
-int main(void) {
+int main(int argc, char *argv[]) {
 	char args[MAX_LENGTH+1], *tokens[MAX_TOKENS];
 	int running; /* flag to determine when to exit program */
 	pid_t pid;
@@ -21,7 +21,19 @@ int main(void) {
 		printf("hgl>");
 		fflush(stdout);
 
-		fgets(args, MAX_LENGTH, stdin);
+		if (argc < 2) { // interactive mode
+			fgets(args, MAX_LENGTH, stdin);	
+		} else if (argc == 2) { // batch mode
+			FILE *fptr;
+			fptr = fopen(argv[1], "r");
+			fgets(args, MAX_LENGTH, fptr);
+			running = 0;
+			
+		} else {
+			fprintf(stderr, "Invalide arguments");
+			exit(EXIT_FAILURE);
+		}
+
 		args[strcspn(args, "\n")] = 0;
 
 		if (!(strcmp(args, EXIT)))
@@ -41,7 +53,6 @@ int main(void) {
 		else {
 			wait(NULL);
 		}
-
 	}
 
 	return 0;
