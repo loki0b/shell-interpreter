@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
@@ -6,6 +7,7 @@
 
 #define MAX_LENGTH 80 /* command line max length */
 #define MAX_TOKENS 40 /* tokens max length */
+#define EXIT "exit"
 
 void separate_tokens(char *ch, char *arr_ch[]);
 
@@ -22,6 +24,9 @@ int main(void) {
 		fgets(args, MAX_LENGTH, stdin);
 		args[strcspn(args, "\n")] = 0;
 
+		if (!(strcmp(args, EXIT)))
+			exit(EXIT_SUCCESS);
+
 		pid = fork();
 
 		if (pid < 0) {
@@ -29,16 +34,14 @@ int main(void) {
 			return -1;
 		} 
 		else if (pid == 0) {
-			printf("Child process init\n");
-			separate_tokens(&*args, tokens);
+			separate_tokens(args, tokens);
 			execvp(tokens[0], tokens);
+			exit(EXIT_SUCCESS);
 		}
 		else {
 			wait(NULL);
-			printf("\nChild process finished\n");
 		}
 
-		running = 0;
 	}
 
 	return 0;
