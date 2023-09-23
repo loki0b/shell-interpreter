@@ -12,7 +12,7 @@
 void separate_tokens(char *ch, char *arr_ch[]);
 
 int main(int argc, char *argv[]) {
-	char args[MAX_LENGTH+1], *tokens[MAX_TOKENS];
+	char args[MAX_LENGTH+1], *tokens[MAX_TOKENS+1];
 	int running; /* flag to determine when to exit program */
 	pid_t pid;
 
