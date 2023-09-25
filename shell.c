@@ -12,17 +12,19 @@
 void separate_tokens(char *ch, char *arr_ch[]);
 
 int main(int argc, char *argv[]) {
-	char args[MAX_LENGTH+1], *tokens[MAX_TOKENS+1];
+	char args[MAX_LENGTH+1], *tokens[MAX_TOKENS+1], history[MAX_LENGTH+1];
 	int running; /* flag to determine when to exit program */
+	int run_history;
 	pid_t pid;
 
+	run_history = 0;
 	running = 1;
 	while (running)	{
 		printf("hgl>");
 		fflush(stdout);
 
 		if (argc < 2) { // interactive mode
-			fgets(args, MAX_LENGTH, stdin);	
+			fgets(args, MAX_LENGTH, stdin);
 		} else if (argc == 2) { // batch mode
 			FILE *fptr;
 			fptr = fopen(argv[1], "r");
@@ -36,6 +38,10 @@ int main(int argc, char *argv[]) {
 
 		args[strcspn(args, "\n")] = 0;
 
+		if (!(strcmp(args, "!!"))) {
+			run_history = 1;
+		} else strcpy(history, args);
+
 		if (!(strcmp(args, EXIT)))
 			exit(EXIT_SUCCESS);
 
@@ -46,9 +52,12 @@ int main(int argc, char *argv[]) {
 			return -1;
 		} 
 		else if (pid == 0) {
-			separate_tokens(args, tokens);
+			if (run_history) {
+				separate_tokens(history, tokens);
+			} else {
+				separate_tokens(args, tokens);
+			}
 			execvp(tokens[0], tokens);
-			exit(EXIT_SUCCESS);
 		}
 		else {
 			wait(NULL);
