@@ -29,8 +29,8 @@ int main(int argc, char *argv[]) {
 			FILE *fptr;
 			fptr = fopen(argv[1], "r");
 			fgets(args, MAX_LENGTH, fptr);
-			fclose(argv[1]);
-			
+			fclose(fptr);
+
 			running = 0;
 		} else {
 			fprintf(stderr, "Invalid arguments");
@@ -75,6 +75,7 @@ void separate_programs(char *command_line, char *arr_prg[]) {
 }
 
 int exec_programs(char *arr_prg) {
+	/* Function to execute the programns in array of args */
 	char *prg[MAX_LENGTH+1];
 	pid_t pid;
 	int i;
