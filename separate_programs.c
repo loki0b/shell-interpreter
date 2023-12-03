@@ -1,14 +1,15 @@
 #include <stdlib.h>
 
-void separate_programs(char *command_line, char *arr_prg[]) {
-	/* Function to separate programs of command line */
-	char *token;
+void separate_programs(char *command_line, char *tokens[]) {
+	/* Function to separate programs of command line.
+  The first command line that user types */
+	char *aux_token;
 	int i;
 	
-	token = strtok(command_line, ";\n");
-	for (i = 0; token != NULL; i++) {
-		arr_prg[i] = token;
-		token = strtok(NULL, ";");
+	aux_token = strtok(command_line, ";\n");
+	for (i = 0; aux_token != NULL; i++) {
+		tokens[i] = aux_token;
+		aux_token = strtok(NULL, ";");
 	}
-	arr_prg[i] = NULL; // Indicate the final of args in array
+	tokens[i] = NULL; // Indicate the final of args in array
 }

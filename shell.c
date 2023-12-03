@@ -8,7 +8,6 @@ int exec_programs(char *arr_prg);
 
 int main(int argc, char *argv[]) {
 	char args[MAX_LENGTH+1], history[MAX_LENGTH+1], *tokens[MAX_TOKENS+1];
-	pid_t pid;
 
 	// Flags
 	int running = TRUE; /* Determine when to exit program */

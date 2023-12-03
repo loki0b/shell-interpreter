@@ -18,7 +18,6 @@ int exec_programs(char *arr_prg) {
 	pid = fork();
 
 	if (pid < 0) {
-		//fprintf(stderr, "Fork failed");
 		return -1;
 	} else if (pid == 0) {
 		execvp(prg[0], prg);
