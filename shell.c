@@ -47,7 +47,7 @@ int main(int argc, char *argv[]) {
 			run_history = TRUE;
 		else 
 			strcpy(history, args); // Store last command typed
-
+		// TODO: Create a file containing the shell history and use it to run the last command typed
 		if (run_history) {
 			separate_programs(history, tokens);
 			for (int i = 0; tokens[i] != NULL; i++) {
