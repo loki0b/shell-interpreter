@@ -7,7 +7,7 @@ void execute_program(char *program, char *args[]) {
 
     if (pid = fork() == -1) { /*  TODO: error */ ;}
     else if (pid == 0) {
-        // Maybe use a different exec function. TODO: Learn more about exec()
+        // Maybe use a different exec function. TODO: Learn more about exec family function
         execvp(program, args);
     }
 }
