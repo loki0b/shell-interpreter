@@ -3,15 +3,15 @@
 
 #define DELIMETERS " \n"
 
-char **separate_cmdline(char *cmd_input, char **cmd_return) {
+char **parser_cmdline(char *input, char **args) {
     // TOREAD: strtok_r function
-    char *token = strtok(cmd_input, DELIMETERS);
+    char *token = strtok(input, DELIMETERS);
     int i = 0;
     for (; token != NULL; i++) {
-       cmd_return[i] = token;
+       args[i] = token;
        token = strtok(NULL, DELIMETERS);
     }
-    cmd_return[i] = NULL;
+    args[i] = NULL;
 
-    return cmd_return;
+    return args;
 }
