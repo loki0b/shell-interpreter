@@ -2,6 +2,6 @@
 #define _EXEC_PGR_
 
 void execute_program(char *program, char *args[]);
-char **separate_cmdline(char *cmd_input, char **cmd_return);
+char **parse_cmdline(char *input, char **args);
 
 #endif
