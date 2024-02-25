@@ -3,7 +3,8 @@
 
 #define DELIMETERS " \n"
 
-char **parser_cmdline(char *input, char **args) {
+char **parser(char *input, char **args) {
+    input[strcspn(input, "\n")] = 0;
     // TOREAD: strtok_r function
     char *token = strtok(input, DELIMETERS);
     int i = 0;

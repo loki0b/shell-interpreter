@@ -13,9 +13,9 @@ int main(int argc, char *argv[]) {
     while (running) {
         printf("sh>");
         fgets(buffer, BUFFER_SIZE, stdin);
-        // Should I encapsulate the separate_cmdline function?
-        parser_cmdline(buffer, cmd);
+
+        // I'll need change this later
+        parser(buffer, cmd);
         execute_program(cmd[0], cmd);
-        exit(EXIT_SUCCESS);
     }
 }
