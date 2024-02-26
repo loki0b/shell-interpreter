@@ -10,9 +10,14 @@ int main(int argc, char *argv[]) {
     char buffer[BUFFER_SIZE];
     bool sequential_flg = true;
     bool parallel_flg = false;
+	char command[60];
 
     while (running) {
-        if (sequential_flg) {
+        if (argc == 2) {
+			batch_exec(argv);
+			return 0;
+		}
+		if (sequential_flg) {
             sequential_mode();
         }
         
