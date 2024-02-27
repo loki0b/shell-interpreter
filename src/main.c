@@ -31,11 +31,11 @@ int main(int argc, char **argv) {
 
 
     while (running) {
-
+       
         if (batch) {
             batch_exec(argv);
         }
-		
+        
 		if (sequential) {
             sequential_mode();
         }
