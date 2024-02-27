@@ -1,27 +1,41 @@
-#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "headers.h"
 
 #define BUFFER_SIZE 60
 
-int main(int argc, char *argv[]) {
-    bool running = true;
-    char buffer[BUFFER_SIZE];
-    bool sequential_flg = true;
-    bool parallel_flg = false;
-	char command[60];
+
+bool running = true;
+bool sequential = false;
+bool parallel = false;
+bool batch = false;
+
+int main(int argc, char **argv) {
 
     while (running) {
-        if (argc == 2) {
-			batch_exec(argv);
-			return 0;
-		}
-		if (sequential_flg) {
+
+        switch (argc) {
+            case 1:
+                sequential = true;
+                break;
+            case 2:
+                batch = true;
+                break;
+            default:
+                break;
+        }
+
+        if (batch) {
+            batch_exec(argv);
+            running = false;
+        }
+		
+		if (sequential) {
             sequential_mode();
         }
         
-        if (parallel_flg) {
+        if (parallel) {
             parallel_mode();
         }
 
