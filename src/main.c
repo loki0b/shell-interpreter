@@ -5,30 +5,35 @@
 
 #define BUFFER_SIZE 60
 
-
-bool running = true;
+// extern keyword is the best way?
+bool running = false;
 bool sequential = false;
 bool parallel = false;
 bool batch = false;
 
 int main(int argc, char **argv) {
 
-    while (running) {
+    switch (argc) {
+        case 1:
+            sequential = true;
+            running = true;
+            break;
 
-        switch (argc) {
-            case 1:
-                sequential = true;
-                break;
-            case 2:
-                batch = true;
-                break;
-            default:
-                break;
-        }
+        case 2:
+            batch = true;
+            running = true;
+            break;
+        
+        // Add new cases (?)
+        default:
+            fprintf(stderr, "Error initializing shell.\n");
+    }
+
+
+    while (running) {
 
         if (batch) {
             batch_exec(argv);
-            running = false;
         }
 		
 		if (sequential) {
@@ -39,7 +44,8 @@ int main(int argc, char **argv) {
             parallel_mode();
         }
 
-        exit(EXIT_SUCCESS);
     }
+
+    exit(EXIT_SUCCESS);
 
 }
