@@ -2,12 +2,10 @@
 #include <stdlib.h>
 #include "headers.h"
 
-int running_mode = 0; // Mode 0 to sequential, mode 1 to parallel
+int running_mode = 1; // Mode 1 to sequential, mode 0 to parallel
 
-// changed **argv to a better comprehension 
 int main(int argc, char *argv[]) {
-
-    // batch_exec outside while, this doesn't have to be on a loop, it will run only 1 time
+	
 	if (argc == 2) {
 		batch_exec(argv);
 	}
@@ -15,9 +13,9 @@ int main(int argc, char *argv[]) {
     while (1) {
     	break; // Break here to temp avoid error with seq. and parallel.
       
-		if (running_mode) {
+	if (running_mode) {
             sequential_mode();
-        } else{
+        } else {
             parallel_mode();
         }
         
