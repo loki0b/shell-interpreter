@@ -1,49 +1,26 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include "headers.h"
 
 #define BUFFER_SIZE 60
 
-// extern keyword is the best way?
-bool running = false;
-bool sequential = false;
-bool parallel = false;
-bool batch = false;
+int running_mode = 0; // Mode 0 to sequential, mode 1 to parallel
 
-int main(int argc, char **argv) {
+int main(int argc, char *argv[]) {
 
-    switch (argc) {
-        case 1:
-            sequential = true;
-            running = true;
-            break;
-
-        case 2:
-            batch = true;
-            running = true;
-            break;
-        
-        // Add new cases (?)
-        default:
-            fprintf(stderr, "Error initializing shell.\n");
-    }
-
-
-    while (running) {
-       
-        if (batch) {
-            batch_exec(argv);
-        }
-        
-		if (sequential) {
+	if (argc == 2) {
+		batch_exec(argv);
+	}
+ 
+    while (1) {
+    	break; // Break here to temp avoid error with seq. and parallel.
+      
+		if (running_mode) {
             sequential_mode();
-        }
-        
-        if (parallel) {
+        } else{
             parallel_mode();
         }
-
+        
     }
 
     exit(EXIT_SUCCESS);
