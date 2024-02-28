@@ -18,7 +18,8 @@ int main(int argc, char *argv[]) {
         }
 	// change later
 	else {
-		fprinf(stderr, "Error number of args dont match.\n");
+		fprintf(stderr, "Error number of args dont match.\n");
+        exit(EXIT_FAILURE);
 	}
 
     }
