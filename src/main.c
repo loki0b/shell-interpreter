@@ -11,14 +11,16 @@ int main(int argc, char *argv[]) {
 		batch_exec(argv);
 		break;
 	}
+	else if (argc == 1) {
+		if (running_mode) sequential_mode();
+		else parallel_mode();
+		break;
+	}
+	// change later
+	else {
+		fprinf(stderr, "Error number of args dont match.\n");
+	}
 
-	break;
-	if (running_mode) {
-            sequential_mode();
-        } else {
-            parallel_mode();
-        }
-        
     }
 
     exit(EXIT_SUCCESS);
