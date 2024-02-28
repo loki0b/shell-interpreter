@@ -1,22 +1,30 @@
 #include <stdio.h> 
 #include <stdlib.h>
-#include <stdbool.h>
 #include <unistd.h>
-
-extern bool running;
+#include "headers.h"
+#include <string.h>
 
 int batch_exec(char *argv[]){
-	char *buffer[60];
-	FILE *batch;
-	
-	batch = fopen(argv[1], "r");
-	if (batch != NULL) {
-		fgets(buffer, 61, batch);
-//		execvp();
-	} else {
-		fprintf(stderr, "File doesn't exists");
-        running = false;
+    char buffer[60]; 
+    char *command;
+	char *token;
+    FILE *batch;
 
-        return -1;
-	}
+    batch = fopen(argv[1], "r");
+
+    if (batch != NULL) {
+        fgets(buffer, sizeof(buffer), batch); 
+        command = strtok(buffer, " \n"); 
+        
+        while (token != NULL) {
+            token = strtok(NULL, " \n");
+        }
+
+        execvp(command, token);
+        
+    } else {
+        fprintf(stderr, "File doesn't exist");
+        return 1;
+    }
+    return 0;
 }
