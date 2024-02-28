@@ -6,21 +6,16 @@
 
 int batch_exec(char *argv[]){
     char buffer[60]; 
-    char *command;
-	char *token;
+    char **command;
     FILE *batch;
 
     batch = fopen(argv[1], "r");
 
     if (batch != NULL) {
         fgets(buffer, sizeof(buffer), batch); 
-        command = strtok(buffer, " \n"); 
-        
-        while (token != NULL) {
-            token = strtok(NULL, " \n");
-        }
+        command = parser(buffer);
 
-        execvp(command, token);
+        execvp(command[0], command);
         
     } else {
         fprintf(stderr, "File doesn't exist");
