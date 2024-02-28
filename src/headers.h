@@ -3,6 +3,7 @@
 
 int sequential_mode();
 int parallel_mode();
-int batch_mode(char **argv); 
+//int batch_mode(char **argv); 
+int batch_exec(char *argv[]);
 
 #endif
