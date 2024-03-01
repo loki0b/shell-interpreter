@@ -1,8 +1,9 @@
 #include <stdio.h>
+#include "headers.h"
 
-int sequential_mode() {
+int sequential_mode(char *argv[]) {
     printf("sh sequential>");
-//    get_command_line();
+    
 
     return 0;
 }

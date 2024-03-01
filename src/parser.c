@@ -5,6 +5,15 @@
 #define DELIMETERS " \n"
 #define MAX_SIZE 10
 
+
+/*
+    O parser poderia mandar o output dos comandos para uma lista encadeada,
+    e ao encontrar cada ';' poderia adicionar NULL em seguida, para que o 
+    parser fosse interrompido, selecionando um comando especifico. e poderia
+    também retornar os indices de cada ';' para a função de exec saber onde 
+    ela deverá iniciar a execução do proximo comando.
+*/
+
 char** parser(char *input) {
     char *token;
     char **parsed_input;

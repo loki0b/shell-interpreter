@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "headers.h"
 
 int parallel_mode() {
     printf("sh parallel>");

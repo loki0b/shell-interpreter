@@ -12,9 +12,11 @@ int main(int argc, char *argv[]) {
             break;
         }
         else if (argc == 1) {
-	        if (running_mode) sequential_mode();
-            else parallel_mode();
-            break;
+	        if (running_mode) {
+                sequential_mode(argv);
+            } else {
+                parallel_mode(argv);
+            }
         }
 	// change later
 	else {
